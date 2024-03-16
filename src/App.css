@@ -73,7 +73,11 @@
 .tcontainer {
   color: white;
   padding-top: 2%;
-  background-color: rgba(172, 172, 172, 0.959);
+  background-color: rgba(255, 255, 255, 0.808);
+  margin-top: 10%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border: solid 4px black;
 }
 
 .menu-item {
@@ -93,18 +97,20 @@
 }
 
 .form {
-  background-color: rgba(255, 228, 196, 0.411);
+  background-color: rgba(255, 255, 255, 0.603);
   /* background-image: url('./assets/estrellas.jpg'); */
   display: block;
   padding: 4%;
   border-radius: 10px;
   border: 3px solid black;
   font-weight: bold;
+  width: 50vw;
+  margin-top: 15%;
 }
 
 .textField {
   color: white;
-  width: 80%;
+  width: 90%;
 }
 
 .textField > a {

@@ -41,7 +41,7 @@ export default function ListOptions() {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
-    bgcolor: '#4db5bd',
+    bgcolor: 'rgba(255, 255, 255, 0.808)',
     border: '0 solid #000',
     boxShadow: 24,
     p: 4,
