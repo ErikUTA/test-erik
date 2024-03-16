@@ -6,7 +6,7 @@ export default function Header() {
 
     return (
       <Grid className="navbar center">
-        <img className='logo-header' src="https://i.pinimg.com/originals/10/b1/ba/10b1bad21f79df5f462c1c09f12db6ff.jpg" />
+        <img className='logo-header' src="https://cdn-icons-png.flaticon.com/512/2991/2991552.png" />
         <Link to={'/listOpinions'} className="menu-item">
           Lista de comentarios
         </Link>
