@@ -29,7 +29,7 @@ export default function Opinions() {
     } else {
       setOpen(false);
       axios
-        .post("http://localhost:8080/api/addComment", data)
+        .post("https://test-erik-backend-68296a234c9c.herokuapp.com/api/addComment", data)
         .then((response) => {
           console.log("Enviado correctamente", response);
         });

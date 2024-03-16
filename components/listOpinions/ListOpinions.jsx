@@ -19,7 +19,7 @@ export default function ListOptions() {
   } 
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/listComments").then((response) => {
+    axios.get("https://test-erik-backend-68296a234c9c.herokuapp.com/api/listComments").then((response) => {
       setComments(response?.data);
       setNewList(response?.data);
     });
