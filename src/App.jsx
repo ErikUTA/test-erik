@@ -1,8 +1,8 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Header from '../components/elements/header';
 import Opinions from '../components/opinions/Opinions';
 import ListOptions from '../components/listOpinions/ListOpinions';
+import Header from '../components/elements/Header';
 
 function App() {
 

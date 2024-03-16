@@ -1,12 +1,12 @@
 export const saveInput = async (previousState, formData) => {
-  const titulo = formData.get("titulo");
-  const autor = formData.get("autor");
-  const contenido = formData.get("contenido");
-  const fecha = formData.get("fecha");
+  const titulo = formData.get("Titulo");
+  const autor = formData.get("Autor");
+  const fecha = formData.get("Fecha");
+  const contenido = formData.get("Contenido");
   return {
-    titulo: titulo ?? titulo.toString(),
-    autor: autor ?? autor.toString(),
-    contenido: contenido ?? contenido.toString(),
-    fecha: fecha ?? fecha.toString(),
+    Titulo: titulo ?? titulo.toString(),
+    Autor: autor ?? autor.toString(),
+    Fecha: fecha ?? fecha.toString(),
+    Contenido: contenido ?? contenido.toString(),
   };
 };

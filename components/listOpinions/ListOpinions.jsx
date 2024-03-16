@@ -1,34 +1,72 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { DataGrid } from "@mui/x-data-grid";
+import { Box, Modal, TextField } from "@mui/material";
 
 export default function ListOptions() {
+  const [comments, setComments] = useState([]);
+  const [newList, setNewList] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [content, setContent] = useState('');
+
+  const handleOpen = (rowText) => {
+    setContent(rowText);
+    setOpen(true);
+  } 
+  const handleClose = () => {
+    setContent('');
+    setOpen(false);
+  } 
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/api/listComments").then((response) => {
+      setComments(response?.data);
+      setNewList(response?.data);
+    });
+  }, []);
+
+  const handleChange = (input) => {
+    const match = comments.filter(
+      (e) =>
+        e?.Titulo?.toLowerCase().includes(input.toLowerCase()) |
+        e?.Autor?.toLowerCase().includes(input.toLowerCase()) |
+        e?.Contenido?.toLowerCase().includes(input.toLowerCase())
+    );
+    input.length > 0 ? setNewList(match) : setNewList(comments);
+  };
+
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: '#4db5bd',
+    border: '0 solid #000',
+    boxShadow: 24,
+    p: 4,
+    color: 'black'
+  };
+
   const columns = [
-    { field: "id", headerName: "ID", width: 70 },
+    { field: "Id", headerName: "ID", width: 70 },
     { field: "Titulo", headerName: "Título", width: 150 },
     { field: "Autor", headerName: "Autor", width: 150 },
-    {
-      field: "Fecha_de_publicacion",
-      headerName: "Fecha de publicación",
-      type: "Date",
-      width: 230,
-    },
+    { field: "Fecha", headerName: "Fecha de publicación", width: 230 },
+    { field: "Contenido", headerName: "Contenido", width: 230 },
   ];
 
-  const rows = [
-    { id: 1, Titulo: "Snow", Autor: "Jon", Fecha_de_publicacion: '11/7/2022' },
-    { id: 2, Titulo: "Snow", Autor: "Jon", Fecha_de_publicacion: '11/7/2022' },
-    { id: 3, Titulo: "Snow", Autor: "Jon", Fecha_de_publicacion: '11/7/2022' },
-    { id: 4, Titulo: "Snow", Autor: "Jon", Fecha_de_publicacion: '11/7/2022' },
-    { id: 5, Titulo: "Snow", Autor: "Jon", Fecha_de_publicacion: '11/7/2022' },
-    { id: 6, Titulo: "Snow", Autor: "Jon", Fecha_de_publicacion: '11/7/2022' },
-    { id: 7, Titulo: "Snow", Autor: "Jon", Fecha_de_publicacion: '11/7/2022' },
-    { id: 8, Titulo: "Snow", Autor: "Jon", Fecha_de_publicacion: '11/7/2022' },
-    { id: 9, Titulo: "Snow", Autor: "Jon", Fecha_de_publicacion: '11/7/2022' },
-  ];
   return (
-    <div style={{ height: 400, width: "100%" }}>
+    <div className="tcontainer">
+      <TextField
+        name="filtro"
+        label="Busqueda..."
+        variant="standard"
+        onChange={(e) => handleChange(e.target.value)}
+      />
       <DataGrid
-        rows={rows}
+        className="table"
+        rows={newList}
         columns={columns}
         initialState={{
           pagination: {
@@ -37,7 +75,26 @@ export default function ListOptions() {
         }}
         pageSizeOptions={[5, 10]}
         checkboxSelection
+        getRowId={(row) => row.Id}
+        onRowClick={(e) => handleOpen(e.row.Contenido)}
       />
+      <div>
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <h3>
+              Contenido:
+            </h3>
+            <p className='content'>
+              {content}
+            </p>
+          </Box>
+        </Modal>
+      </div>
     </div>
   );
 }

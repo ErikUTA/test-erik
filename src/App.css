@@ -70,6 +70,12 @@
   left: 0;
 }
 
+.tcontainer {
+  color: white;
+  padding-top: 2%;
+  background-color: rgba(172, 172, 172, 0.959);
+}
+
 .menu-item {
   cursor: grab;
   margin: 5%;
@@ -87,9 +93,30 @@
 }
 
 .form {
-  background-color: #888;
+  background-color: rgba(255, 228, 196, 0.411);
+  /* background-image: url('./assets/estrellas.jpg'); */
   display: block;
   padding: 4%;
+  border-radius: 10px;
+  border: 3px solid black;
+  font-weight: bold;
+}
+
+.textField {
+  color: white;
+  width: 80%;
+}
+
+.textField > a {
+  color: aqua;
+}
+
+.content {
+  word-wrap: break-word;
+}
+
+.table {
+  margin-top: 3%;
 }
 
 @keyframes animated-bottom {
